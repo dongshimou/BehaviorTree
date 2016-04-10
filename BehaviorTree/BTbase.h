@@ -60,7 +60,6 @@ namespace BehaviorTree
         virtual void DoTransition(void* object)
         {
         }
-
         virtual bool Evaluate(void* object)
         {
             return (node_precondition == nullptr || node_precondition->ExternalCondition(object)) && DoEvaluate(object);
@@ -73,8 +72,6 @@ namespace BehaviorTree
         {
             DoTransition(object);
         }
-
-
         BTbase& AddChild(BTbase *childNode)
         {
             child.push_back(childNode);

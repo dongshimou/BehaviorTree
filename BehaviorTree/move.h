@@ -9,11 +9,10 @@ public:
     {
     }
 
-    bool OnEnter(void* object)
+    void OnEnter(void* object)
     {
         speed = 10;
         cout << "Move Start" << endl;
-        return true;
     }
 
     RunningStatus Update(void* object)

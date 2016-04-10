@@ -9,17 +9,10 @@ public:
     {
     }
 
-    bool OnEnter(void* object)
+    void OnEnter(void* object)
     {
         Vector2 *point = (Vector2*)object;
-
-        if(point->visable == false)
-        {
-            cout << "no prey" << endl;
-            return true;
-        }
-        else
-            return false;
+        cout << "no prey" << endl;
     }
     RunningStatus Update(void* object)
     {

@@ -8,10 +8,9 @@ public:
         BTaction(parent)
     {
     }
-    bool OnEnter(void* object)
+    void OnEnter(void* object)
     {
         cout << "Start Attack" << endl;
-        return true;
     }
     RunningStatus Update(void* object)
     {

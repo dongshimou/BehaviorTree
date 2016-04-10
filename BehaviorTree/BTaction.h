@@ -9,14 +9,14 @@ namespace BehaviorTree
     public:
         BTaction(BTbase* parentNode, Precondition* precondition = nullptr)
             : BTbase(parentNode, precondition),
-              status(ready)
+              status(ready),
+              is_finish(true)
         {
             Init();
         }
         virtual void Init() {}
-        virtual bool OnEnter(void* object)
+        virtual void OnEnter(void* object)
         {
-            return true;
         }
         virtual RunningStatus Update(void* object)
         {
@@ -36,6 +36,7 @@ namespace BehaviorTree
             if(status == ready)
             {
                 OnEnter(object);
+                is_finish = false;
                 status = running;
             }
 
@@ -51,6 +52,7 @@ namespace BehaviorTree
 
             if(status >= finish)
             {
+                is_finish = true;
                 status = ready;
                 OnExit(object);
             }
@@ -60,9 +62,15 @@ namespace BehaviorTree
 
         virtual void DoTransition(void* object)
         {
+            if(!is_finish)
+                OnExit(object);
+
+            status = ready;
+            is_finish = true;
         }
     protected:
         RunningStatus status;
+        bool is_finish;
     };
 }
 #endif // !_BTaction_H_

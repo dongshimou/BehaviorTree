@@ -7,6 +7,7 @@ namespace BehaviorTree
     class BTloop : public BTbase
     {
     public:
+        static const int LoopInfinite = -1;
         BTloop(BTbase* parentNode, Precondition* precondition = nullptr)
             : BTbase(parentNode, precondition),
               loop_limit(LoopInfinite),
@@ -35,7 +36,7 @@ namespace BehaviorTree
         virtual void Init() {}
         virtual bool DoEvaluate(void* object)
         {
-            if(loop_limit != LoopInfinite || loop_count >= loop_limit)
+            if(loop_limit != LoopInfinite && loop_count >= loop_limit)
             {
                 return false;
             }
@@ -48,9 +49,9 @@ namespace BehaviorTree
                 {
                     return true;
                 }
-
-                return false;
             }
+
+            return false;
         }
         virtual RunningStatus DoExecute(void* object)
         {
@@ -77,7 +78,7 @@ namespace BehaviorTree
                 }
             }
 
-            if(thisfinish == finish)
+            if(thisfinish >= finish)
             {
                 loop_count = 0;
             }
@@ -98,8 +99,7 @@ namespace BehaviorTree
         int loop_limit;
         int loop_count;
         int loop_index;
-    private:
-        static const int LoopInfinite = -1;
+
     };
 }
 #endif // !_BTloop_H_

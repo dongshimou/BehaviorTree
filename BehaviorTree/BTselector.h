@@ -1,5 +1,5 @@
-#ifndef _BTSelector_H_
-#define _BTSelector_H_
+#ifndef _BTselector_H_
+#define _BTselector_H_
 
 #include "BTbase.h"
 namespace BehaviorTree
@@ -78,4 +78,4 @@ namespace BehaviorTree
         int last_index;
     };
 }
-#endif // !_BTSelector_H_
+#endif // !_BTselector_H_

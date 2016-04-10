@@ -1,5 +1,5 @@
-#ifndef _BTSequence_H_
-#define _BTSequence_H_
+#ifndef _BTsequence_H_
+#define _BTsequence_H_
 
 #include "BTbase.h"
 namespace BehaviorTree
@@ -70,4 +70,4 @@ namespace BehaviorTree
         int now_index;
     };
 }
-#endif // !_BTSequence_H_
+#endif // !_BTsequence_H_

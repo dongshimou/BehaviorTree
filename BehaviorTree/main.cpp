@@ -10,9 +10,10 @@ int main()
 {
     auto root = new BTbase();
     auto loop = new BTloop(root);
-    auto selector = new BTselector(root);
+    root->AddChild(loop);
+    auto selector = new BTselector(loop);
+    loop->AddChild(selector);
     auto sequence = new BTsequence(selector);
-    root->AddChild(selector);
     selector->AddChild(sequence);
     auto m_move = new Move(sequence);
     auto m_attack = new Attack(sequence);
@@ -29,8 +30,8 @@ int main()
 
     while(true)
     {
-        if(selector->Evaluate((void*)temp))
-            selector->Execute((void*)temp);
+        if(loop->Evaluate((void*)temp))
+            loop->Execute((void*)temp);
 
         getchar();
     }
