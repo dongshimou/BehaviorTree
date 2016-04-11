@@ -1,11 +1,11 @@
 #ifndef _attack_H_
 #define _attack_H_
 #include "monster.h"
-class Attack : public BTaction
+class Attack : public BTAction
 {
 public:
-    Attack(BTbase* parent):
-        BTaction(parent)
+    Attack(BTBase* parent):
+        BTAction(parent)
     {
     }
     void OnEnter(void* object)

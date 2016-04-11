@@ -1,14 +1,14 @@
-#ifndef _BTselector_H_
-#define _BTselector_H_
+#ifndef _BTSelector_H_
+#define _BTSelector_H_
 
-#include "BTbase.h"
+#include "base/BTBase.h"
 namespace BehaviorTree
 {
-    class BTselector: public BTbase
+    class BTSelector: public BTBase
     {
     public:
-        BTselector(BTbase* parentNode, Precondition* precondition = nullptr)
-            : BTbase(parentNode, precondition),
+        BTSelector(BTBase* parentNode, Precondition* precondition = nullptr)
+            : BTBase(parentNode, precondition),
               now_index(-1),
               last_index(-1)
         {
@@ -42,7 +42,7 @@ namespace BehaviorTree
                     if(CheckIndex(last_index))
                     {
                         auto node = child[last_index];
-                        node->Execute(object);
+                        node->DoTransition(object);
                     }
 
                     last_index = now_index;
@@ -77,5 +77,23 @@ namespace BehaviorTree
         int now_index;
         int last_index;
     };
+    class BTNormolSelector: public BTSelector
+    {
+        virtual bool DoEvaluate(void* object)
+        {
+            if(CheckIndex(now_index))
+            {
+                auto node = child[now_index];
+
+                if(node->Evaluate(object))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    };
 }
-#endif // !_BTselector_H_
+
+#endif // !_BTSelector_H_

@@ -1,14 +1,14 @@
-#ifndef _BTsequence_H_
-#define _BTsequence_H_
+#ifndef _BTSequence_H_
+#define _BTSequence_H_
 
-#include "BTbase.h"
+#include "base/BTBase.h"
 namespace BehaviorTree
 {
-    class BTsequence: public BTbase
+    class BTSequence: public BTBase
     {
     public:
-        BTsequence(BTbase* parentNode, Precondition* precondition = nullptr)
-            : BTbase(parentNode, precondition),
+        BTSequence(BTBase* parentNode, Precondition* precondition = nullptr)
+            : BTBase(parentNode, precondition),
               now_index(-1)
         {
             Init();
@@ -70,4 +70,5 @@ namespace BehaviorTree
         int now_index;
     };
 }
-#endif // !_BTsequence_H_
+
+#endif // !_BTSequence_H_

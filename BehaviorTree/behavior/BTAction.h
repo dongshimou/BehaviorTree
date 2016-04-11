@@ -1,14 +1,14 @@
-#ifndef _BTaction_H_
-#define _BTaction_H_
+#ifndef _BTAction_H_
+#define _BTAction_H_
 
-#include "BTbase.h"
+#include "base/BTBase.h"
 namespace BehaviorTree
 {
-    class BTaction: public BTbase
+    class BTAction: public BTBase
     {
     public:
-        BTaction(BTbase* parentNode, Precondition* precondition = nullptr)
-            : BTbase(parentNode, precondition),
+        BTAction(BTBase* parentNode, Precondition* precondition = nullptr)
+            : BTBase(parentNode, precondition),
               status(ready),
               is_finish(true)
         {
@@ -73,4 +73,5 @@ namespace BehaviorTree
         bool is_finish;
     };
 }
-#endif // !_BTaction_H_
+
+#endif // !_BTAction_H_

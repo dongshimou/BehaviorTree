@@ -1,11 +1,11 @@
-#ifndef _move_H_
-#define _move_H_
+#ifndef _Move_H_
+#define _Move_H_
 #include "monster.h"
-class Move : public BTaction
+class Move : public BTAction
 {
 public:
-    Move(BTbase* node)
-        : BTaction(node)
+    Move(BTBase* node)
+        : BTAction(node)
     {
     }
 
@@ -45,4 +45,4 @@ public:
 private:
     float speed;
 };
-#endif // !_move_H_
+#endif // !_Move_H_

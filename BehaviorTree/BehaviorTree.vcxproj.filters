@@ -25,46 +25,49 @@
     <Filter Include="头文件\lib\behavior">
       <UniqueIdentifier>{8a44d4fd-5428-4c8c-8c39-16be788ebd44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\monster">
+      <UniqueIdentifier>{0fea862c-9496-486b-ba22-a60df9879799}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BTparallel.h">
-      <Filter>头文件\lib\control</Filter>
-    </ClInclude>
-    <ClInclude Include="BTselector.h">
-      <Filter>头文件\lib\control</Filter>
-    </ClInclude>
-    <ClInclude Include="BTsequence.h">
-      <Filter>头文件\lib\control</Filter>
-    </ClInclude>
-    <ClInclude Include="BTaction.h">
-      <Filter>头文件\lib\behavior</Filter>
+    <ClInclude Include="arrive.h">
+      <Filter>源文件\monster</Filter>
     </ClInclude>
     <ClInclude Include="attack.h">
-      <Filter>源文件</Filter>
+      <Filter>源文件\monster</Filter>
     </ClInclude>
-    <ClInclude Include="BTloop.h">
+    <ClInclude Include="found.h">
+      <Filter>源文件\monster</Filter>
+    </ClInclude>
+    <ClInclude Include="idle.h">
+      <Filter>源文件\monster</Filter>
+    </ClInclude>
+    <ClInclude Include="monster.h">
+      <Filter>源文件\monster</Filter>
+    </ClInclude>
+    <ClInclude Include="move.h">
+      <Filter>源文件\monster</Filter>
+    </ClInclude>
+    <ClInclude Include="base\BTBase.h">
+      <Filter>头文件\lib\base</Filter>
+    </ClInclude>
+    <ClInclude Include="behavior\BTAction.h">
+      <Filter>头文件\lib\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="control\BTLoop.h">
       <Filter>头文件\lib\control</Filter>
     </ClInclude>
-    <ClInclude Include="BTbase.h">
-      <Filter>头文件\lib\base</Filter>
+    <ClInclude Include="control\BTParallel.h">
+      <Filter>头文件\lib\control</Filter>
+    </ClInclude>
+    <ClInclude Include="control\BTSelector.h">
+      <Filter>头文件\lib\control</Filter>
+    </ClInclude>
+    <ClInclude Include="control\BTSequence.h">
+      <Filter>头文件\lib\control</Filter>
     </ClInclude>
     <ClInclude Include="BehaviorTree.h">
       <Filter>头文件\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="move.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="idle.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="monster.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="arrive.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="found.h">
-      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

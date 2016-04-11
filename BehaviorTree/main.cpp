@@ -8,12 +8,12 @@ using namespace BehaviorTree;
 using namespace std;
 int main()
 {
-    auto root = new BTbase();
-    auto loop = new BTloop(root);
+    auto root = new BTBase();
+    auto loop = new BTLoop(root);
     root->AddChild(loop);
-    auto selector = new BTselector(loop);
+    auto selector = new BTSelector(loop);
     loop->AddChild(selector);
-    auto sequence = new BTsequence(selector);
+    auto sequence = new BTSequence(selector);
     selector->AddChild(sequence);
     auto m_move = new Move(sequence);
     auto m_attack = new Attack(sequence);

@@ -79,15 +79,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="attack.h" />
+    <ClInclude Include="base\BTBase.h" />
+    <ClInclude Include="BehaviorTree.h" />
+    <ClInclude Include="behavior\BTAction.h" />
+    <ClInclude Include="control\BTLoop.h" />
+    <ClInclude Include="control\BTParallel.h" />
+    <ClInclude Include="control\BTSelector.h" />
+    <ClInclude Include="control\BTSequence.h" />
     <ClInclude Include="found.h" />
     <ClInclude Include="monster.h" />
-    <ClInclude Include="BehaviorTree.h" />
-    <ClInclude Include="BTaction.h" />
-    <ClInclude Include="BTbase.h" />
-    <ClInclude Include="BTloop.h" />
-    <ClInclude Include="BTparallel.h" />
-    <ClInclude Include="BTselector.h" />
-    <ClInclude Include="BTsequence.h" />
     <ClInclude Include="idle.h" />
     <ClInclude Include="move.h" />
     <ClInclude Include="arrive.h" />

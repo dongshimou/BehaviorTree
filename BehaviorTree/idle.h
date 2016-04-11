@@ -1,11 +1,11 @@
 #ifndef _idle_H_
 #define _idle_H_
 #include "monster.h"
-class Idle : public BTaction
+class Idle : public BTAction
 {
 public:
-    Idle(BTbase* parent):
-        BTaction(parent)
+    Idle(BTBase* parent):
+        BTAction(parent)
     {
     }
 

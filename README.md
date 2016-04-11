@@ -14,6 +14,8 @@ Behavior:action
 样例中的结构如下：
 				root
 				|
+				loop
+				|
 			selector
 			|		|
 		sequence	idle

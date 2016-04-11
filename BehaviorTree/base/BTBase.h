@@ -1,5 +1,5 @@
-#ifndef _BTbase_H_
-#define _BTbase_H_
+#ifndef _BTBase_H_
+#define _BTBase_H_
 
 #include <vector>
 #include <string>
@@ -19,29 +19,29 @@ namespace BehaviorTree
     public:
         virtual bool ExternalCondition(void* object) = 0;
     };
-    class BTbase
+    class BTBase
     {
     protected:
-        std::vector<BTbase*>child;
-        BTbase* parent_node;
+        std::vector<BTBase*>child;
+        BTBase* parent_node;
 
         Precondition* node_precondition;
         std::string debug_name;
     public:
-        BTbase():
+        BTBase():
             debug_name("unnamed"),
             parent_node(nullptr)
         {
             Init();
         }
-        BTbase(BTbase* parentNode, Precondition* precondition = nullptr):
+        BTBase(BTBase* parentNode, Precondition* precondition = nullptr):
             debug_name("unnamed"),
             parent_node(parentNode),
             node_precondition(precondition)
         {
             Init();
         }
-        virtual ~BTbase()
+        virtual ~BTBase()
         {
             child.clear();
             delete node_precondition;
@@ -72,12 +72,12 @@ namespace BehaviorTree
         {
             DoTransition(object);
         }
-        BTbase& AddChild(BTbase *childNode)
+        BTBase& AddChild(BTBase *childNode)
         {
             child.push_back(childNode);
             return *this;
         }
-        BTbase& SetPrecondition(Precondition* nodePrecondition)
+        BTBase& SetPrecondition(Precondition* nodePrecondition)
         {
             if(nodePrecondition != node_precondition)
             {
@@ -89,7 +89,7 @@ namespace BehaviorTree
 
             return *this;
         }
-        BTbase& SetDebugName(const char* debugName)
+        BTBase& SetDebugName(const char* debugName)
         {
             debug_name = debugName;
             return *this;
@@ -108,4 +108,5 @@ namespace BehaviorTree
 
     };
 }
-#endif // !_BTbase_H_
+
+#endif // !_BTBase_H_

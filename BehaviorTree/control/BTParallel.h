@@ -1,7 +1,7 @@
-#ifndef _BTparallel_H_
-#define _BTparallel_H_
+#ifndef _BTParallel_H_
+#define _BTParallel_H_
 
-#include "BTbase.h"
+#include "base/BTBase.h"
 #include <map>
 namespace BehaviorTree
 {
@@ -12,11 +12,11 @@ namespace BehaviorTree
         COUNT,
         ALL ,
     };
-    class BTparallel: public BTbase
+    class BTParallel: public BTBase
     {
     public:
-        BTparallel(BTbase* parentNode, Precondition* precondition = nullptr)
-            : BTbase(parentNode, precondition),
+        BTParallel(BTBase* parentNode, Precondition* precondition = nullptr)
+            : BTBase(parentNode, precondition),
               finish_condition(ONE),
               finish_limit(-1)
         {
@@ -134,7 +134,8 @@ namespace BehaviorTree
         ParallelCondition finish_condition;
         int finish_limit;
         int finish_count;
-        std::map<BTbase*, RunningStatus> child_status;
+        std::map<BTBase*, RunningStatus> child_status;
     };
 }
-#endif // !_BTparallel_H_
+
+#endif // !_BTParallel_H_

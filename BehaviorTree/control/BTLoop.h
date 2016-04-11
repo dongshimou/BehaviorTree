@@ -1,15 +1,15 @@
-#ifndef _BTloop_H_
-#define _BTloop_H_
+#ifndef _BTLoop_H_
+#define _BTLoop_H_
 
-#include "BTbase.h"
+#include "base/BTBase.h"
 namespace BehaviorTree
 {
-    class BTloop : public BTbase
+    class BTLoop : public BTBase
     {
     public:
         static const int LoopInfinite = -1;
-        BTloop(BTbase* parentNode, Precondition* precondition = nullptr)
-            : BTbase(parentNode, precondition),
+        BTLoop(BTBase* parentNode, Precondition* precondition = nullptr)
+            : BTBase(parentNode, precondition),
               loop_limit(LoopInfinite),
               loop_count(0),
               loop_index(0)
@@ -102,4 +102,5 @@ namespace BehaviorTree
 
     };
 }
-#endif // !_BTloop_H_
+
+#endif // !_BTLoop_H_
