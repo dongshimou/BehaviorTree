@@ -1,5 +1,5 @@
-#ifndef _monster_H_
-#define _monster_H_
+#ifndef _Monster_H_
+#define _Monster_H_
 #include "BehaviorTree.h"
 #include <iostream>
 #include <string>
@@ -17,5 +17,5 @@ struct Vector2
 Vector2 StartPoint(20, 20);
 Vector2 FinishPoint(40, 40);
 
-#endif // !_monster_H_
+#endif // !_Monster_H_
 

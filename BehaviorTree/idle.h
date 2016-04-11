@@ -1,5 +1,5 @@
-#ifndef _idle_H_
-#define _idle_H_
+#ifndef _Idle_H_
+#define _Idle_H_
 #include "monster.h"
 class Idle : public BTAction
 {
@@ -29,5 +29,5 @@ public:
         point->visable = true;
     }
 };
-#endif // !_idle_H_
+#endif // !_Idle_H_
 

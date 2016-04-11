@@ -1,5 +1,5 @@
-#ifndef _arrive_H_
-#define _arrive_H_
+#ifndef _Arrive_H_
+#define _Arrive_H_
 #include "monster.h"
 class Arrive: public Precondition
 {
@@ -15,4 +15,4 @@ public:
     }
 };
 
-#endif // !_arrive_H_
+#endif // !_Arrive_H_

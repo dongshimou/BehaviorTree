@@ -1,5 +1,5 @@
-#ifndef _attack_H_
-#define _attack_H_
+#ifndef _Attack_H_
+#define _Attack_H_
 #include "monster.h"
 class Attack : public BTAction
 {
@@ -24,5 +24,5 @@ public:
         cout << "stop attack" << endl;
     }
 };
-#endif // !_attack_H_
+#endif // !_Attack_H_
 

@@ -1,5 +1,5 @@
-#ifndef _found_H_
-#define _found_H_
+#ifndef _Found_H_
+#define _Found_H_
 #include "monster.h"
 class Found: public Precondition
 {
@@ -14,4 +14,4 @@ public:
             return false;
     }
 };
-#endif // !_found_H_
+#endif // !_Found_H_
