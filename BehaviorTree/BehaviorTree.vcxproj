@@ -88,6 +88,7 @@
     <ClInclude Include="control\BTSequence.h" />
     <ClInclude Include="found.h" />
     <ClInclude Include="monster.h" />
+    <ClInclude Include="vector2.h" />
     <ClInclude Include="idle.h" />
     <ClInclude Include="move.h" />
     <ClInclude Include="arrive.h" />

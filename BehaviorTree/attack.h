@@ -1,6 +1,6 @@
 #ifndef _Attack_H_
 #define _Attack_H_
-#include "monster.h"
+#include "vector2.h"
 class Attack : public BTAction
 {
 public:

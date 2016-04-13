@@ -42,9 +42,6 @@
     <ClInclude Include="idle.h">
       <Filter>源文件\monster</Filter>
     </ClInclude>
-    <ClInclude Include="monster.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
     <ClInclude Include="move.h">
       <Filter>源文件\monster</Filter>
     </ClInclude>
@@ -68,6 +65,12 @@
     </ClInclude>
     <ClInclude Include="BehaviorTree.h">
       <Filter>头文件\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="vector2.h">
+      <Filter>源文件\monster</Filter>
+    </ClInclude>
+    <ClInclude Include="monster.h">
+      <Filter>源文件\monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

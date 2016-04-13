@@ -1,14 +1,16 @@
 #ifndef _Arrive_H_
 #define _Arrive_H_
-#include "monster.h"
+#include "vector2.h"
 class Arrive: public Precondition
 {
 public:
     bool ExternalCondition(void* object)
     {
         Vector2 *point = (Vector2*)object;
+        float dx = FinishPoint.x - point->x;
+        float dy = FinishPoint.y - point->y;
 
-        if(abs(point->x - FinishPoint.x) <= 1 && abs(point->x - FinishPoint.x) <= 1)
+        if(sqrt(dx * dx + dy * dy) <= 5)
             return true;
         else
             return false;

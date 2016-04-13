@@ -24,7 +24,6 @@ namespace BehaviorTree
     protected:
         std::vector<BTBase*>child;
         BTBase* parent_node;
-
         Precondition* node_precondition;
         std::string debug_name;
     public:
@@ -72,9 +71,14 @@ namespace BehaviorTree
         {
             DoTransition(object);
         }
-        BTBase& AddChild(BTBase *childNode)
+        BTBase& AddChild(BTBase* childNode)
         {
             child.push_back(childNode);
+            return *this;
+        }
+        BTBase& SetParent(BTBase* parentNode)
+        {
+            this->parent_node = parentNode;
             return *this;
         }
         BTBase& SetPrecondition(Precondition* nodePrecondition)

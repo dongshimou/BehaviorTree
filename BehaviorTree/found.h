@@ -1,6 +1,6 @@
 #ifndef _Found_H_
 #define _Found_H_
-#include "monster.h"
+#include "vector2.h"
 class Found: public Precondition
 {
 public:

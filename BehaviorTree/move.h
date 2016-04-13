@@ -1,6 +1,6 @@
 #ifndef _Move_H_
 #define _Move_H_
-#include "monster.h"
+#include "vector2.h"
 class Move : public BTAction
 {
 public:
@@ -11,29 +11,31 @@ public:
 
     void OnEnter(void* object)
     {
-        speed = 10;
+        Vector2 *point = (Vector2*) object;
+        speed = 10.0;
+        dx = FinishPoint.x - point->x;
+        dy = FinishPoint.y - point->y;
+        lenth = sqrt(dx * dx + dy * dy);
         cout << "Move Start" << endl;
     }
 
     RunningStatus Update(void* object)
     {
         Vector2 *point = (Vector2*) object;
+        cout << "Moving" << point->x << " " << point->y << endl;
         float xx = FinishPoint.x - point->x;
         float yy = FinishPoint.y - point->y;
-        float lenth = sqrt(xx * xx + yy * yy);
-        float every = speed / lenth;
-        float dx = FinishPoint.x - point->x;
-        float dy = FinishPoint.y - point->y;
 
-        if(sqrt(dx * dx + dy * dy) <= speed)
+        if(sqrt(xx * xx + yy * yy) <= speed / 2)
         {
+            point->x = FinishPoint.x;
+            point->y = FinishPoint.y;
             return success;
         }
         else
         {
-            point->x += xx * every ;
-            point->y += yy * every ;
-            cout << "Moving" << point->x << " " << point->y << endl;
+            point->x += (speed / lenth) * dx ;
+            point->y += (speed / lenth) * dy ;
             return running;
         }
     }
@@ -44,5 +46,7 @@ public:
     }
 private:
     float speed;
+    float lenth;
+    float dx, dy;
 };
 #endif // !_Move_H_

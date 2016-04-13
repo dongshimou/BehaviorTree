@@ -4,3 +4,15 @@
 #include "control/BTSelector.h"
 #include "control/BTSequence.h"
 #include "control/BTLoop.h"
+/*///////////////////////////////////////////////////////
+//-------------------------------------------------------
+
+    Behavior Tree
+
+    author:     dongshimou
+    address:    dongshimou@gmail.com
+    date:       2016/04/11
+
+
+//-------------------------------------------------------
+/*///////////////////////////////////////////////////////

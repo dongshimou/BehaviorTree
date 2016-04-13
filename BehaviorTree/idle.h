@@ -1,6 +1,6 @@
 #ifndef _Idle_H_
 #define _Idle_H_
-#include "monster.h"
+#include "vector2.h"
 class Idle : public BTAction
 {
 public:
