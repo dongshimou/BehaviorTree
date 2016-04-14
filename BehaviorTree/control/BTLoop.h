@@ -7,16 +7,38 @@ namespace BehaviorTree
     class BTLoop : public BTBase
     {
     public:
-        static const int LoopInfinite = -1;
-        BTLoop(BTBase* parentNode, Precondition* precondition = nullptr)
-            : BTBase(parentNode, precondition),
+        BTLoop(std::string debugName, BTBase* parentNode = nullptr, Precondition* precondition = nullptr, int value = 0)
+            : BTBase(debugName, parentNode, precondition, value),
               loop_limit(LoopInfinite),
               loop_count(0),
               loop_index(0)
         {
             Init();
         }
-
+        BTLoop(BTBase* parentNode , Precondition* precondition = nullptr, int value = 0)
+            : BTBase(parentNode, precondition, value),
+              loop_limit(LoopInfinite),
+              loop_count(0),
+              loop_index(0)
+        {
+            Init();
+        }
+        BTLoop(Precondition* preconditon, int value = 0)
+            : BTBase(preconditon, value),
+              loop_limit(LoopInfinite),
+              loop_count(0),
+              loop_index(0)
+        {
+            Init();
+        }
+        BTLoop(int value = 0)
+            : BTBase(value),
+              loop_limit(LoopInfinite),
+              loop_count(0),
+              loop_index(0)
+        {
+            Init();
+        }
         void SetLoopLimit(int limit)
         {
             loop_limit = limit;
@@ -43,7 +65,7 @@ namespace BehaviorTree
 
             if(CheckIndex(loop_index))
             {
-                auto node = child[loop_index];
+                auto node = ChildNode[loop_index];
 
                 if(node->Evaluate(object))
                 {
@@ -59,7 +81,7 @@ namespace BehaviorTree
 
             if(CheckIndex(loop_index))
             {
-                auto node = child[loop_index];
+                auto node = ChildNode[loop_index];
                 thisfinish = node->Execute(object);
 
                 if(thisfinish == finish)
@@ -89,7 +111,7 @@ namespace BehaviorTree
         {
             if(CheckIndex(loop_index))
             {
-                auto node = child[loop_index];
+                auto node = ChildNode[loop_index];
                 node->Transition(object);
             }
 
@@ -99,7 +121,7 @@ namespace BehaviorTree
         int loop_limit;
         int loop_count;
         int loop_index;
-
+        static const int LoopInfinite = -1;
     };
 }
 

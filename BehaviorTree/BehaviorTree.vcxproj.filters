@@ -25,26 +25,8 @@
     <Filter Include="头文件\lib\behavior">
       <UniqueIdentifier>{8a44d4fd-5428-4c8c-8c39-16be788ebd44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\monster">
-      <UniqueIdentifier>{0fea862c-9496-486b-ba22-a60df9879799}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="arrive.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
-    <ClInclude Include="attack.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
-    <ClInclude Include="found.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
-    <ClInclude Include="idle.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
-    <ClInclude Include="move.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
     <ClInclude Include="base\BTBase.h">
       <Filter>头文件\lib\base</Filter>
     </ClInclude>
@@ -66,16 +48,5 @@
     <ClInclude Include="BehaviorTree.h">
       <Filter>头文件\lib</Filter>
     </ClInclude>
-    <ClInclude Include="vector2.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
-    <ClInclude Include="monster.h">
-      <Filter>源文件\monster</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

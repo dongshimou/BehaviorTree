@@ -7,8 +7,29 @@ namespace BehaviorTree
     class BTAction: public BTBase
     {
     public:
-        BTAction(BTBase* parentNode, Precondition* precondition = nullptr)
-            : BTBase(parentNode, precondition),
+        BTAction(std::string debugName, BTBase* parentNode = nullptr, Precondition* precondition = nullptr, int value = 0)
+            : BTBase(debugName, parentNode, precondition, value),
+              status(ready),
+              is_finish(true)
+        {
+            Init();
+        }
+        BTAction(BTBase* parentNode , Precondition* precondition = nullptr, int value = 0)
+            : BTBase(parentNode, precondition, value),
+              status(ready),
+              is_finish(true)
+        {
+            Init();
+        }
+        BTAction(Precondition* preconditon, int value = 0)
+            : BTBase(preconditon, value),
+              status(ready),
+              is_finish(true)
+        {
+            Init();
+        }
+        BTAction(int value = 0)
+            : BTBase(value),
               status(ready),
               is_finish(true)
         {

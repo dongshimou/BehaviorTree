@@ -1,6 +1,6 @@
 #ifndef _Vector2_H_
 #define _Vector2_H_
-#include "BehaviorTree.h"
+#include "../BehaviorTree/BehaviorTree.h"
 #include <iostream>
 #include <string>
 #define eps 1e-6

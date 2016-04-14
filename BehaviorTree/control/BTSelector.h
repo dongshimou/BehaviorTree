@@ -4,11 +4,32 @@
 #include "base/BTBase.h"
 namespace BehaviorTree
 {
-    class BTSelector: public BTBase
+    class BTPrioritySelector: public BTBase
     {
     public:
-        BTSelector(BTBase* parentNode, Precondition* precondition = nullptr)
-            : BTBase(parentNode, precondition),
+        BTPrioritySelector(std::string debugName, BTBase* parentNode = nullptr, Precondition* precondition = nullptr, int value = 0)
+            : BTBase(debugName, parentNode, precondition, value),
+              now_index(-1),
+              last_index(-1)
+        {
+            Init();
+        }
+        BTPrioritySelector(BTBase* parentNode , Precondition* precondition = nullptr, int value = 0)
+            : BTBase(parentNode, precondition, value),
+              now_index(-1),
+              last_index(-1)
+        {
+            Init();
+        }
+        BTPrioritySelector(Precondition* preconditon, int value = 0)
+            : BTBase(preconditon, value),
+              now_index(-1),
+              last_index(-1)
+        {
+            Init();
+        }
+        BTPrioritySelector(int value = 0)
+            : BTBase(value),
               now_index(-1),
               last_index(-1)
         {
@@ -18,9 +39,9 @@ namespace BehaviorTree
         virtual void Init() {}
         virtual bool DoEvaluate(void* object)
         {
-            for(int i = 0; i < child.size(); i++)
+            for(int i = 0; i < ChildNode.size(); i++)
             {
-                auto node = child[i];
+                auto node = ChildNode[i];
 
                 if(node->Evaluate(object))
                 {
@@ -41,7 +62,7 @@ namespace BehaviorTree
                 {
                     if(CheckIndex(last_index))
                     {
-                        auto node = child[last_index];
+                        auto node = ChildNode[last_index];
                         node->DoTransition(object);
                     }
 
@@ -51,7 +72,7 @@ namespace BehaviorTree
 
             if(CheckIndex(last_index))
             {
-                auto node = child[last_index];
+                auto node = ChildNode[last_index];
                 thisFinish = node->Execute(object);
 
                 if(thisFinish >= finish)
@@ -66,7 +87,7 @@ namespace BehaviorTree
         {
             if(CheckIndex(last_index))
             {
-                auto node = child[last_index];
+                auto node = ChildNode[last_index];
                 node->Transition(object);
             }
 
@@ -77,13 +98,14 @@ namespace BehaviorTree
         int now_index;
         int last_index;
     };
-    class BTNormolSelector: public BTSelector
+    typedef BTPrioritySelector BTSelector;
+    class BTNormolSelector: public BTPrioritySelector
     {
         virtual bool DoEvaluate(void* object)
         {
             if(CheckIndex(now_index))
             {
-                auto node = child[now_index];
+                auto node = ChildNode[now_index];
 
                 if(node->Evaluate(object))
                 {

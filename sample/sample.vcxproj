@@ -10,19 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="base\BTBase.h" />
-    <ClInclude Include="BehaviorTree.h" />
-    <ClInclude Include="behavior\BTAction.h" />
-    <ClInclude Include="control\BTLoop.h" />
-    <ClInclude Include="control\BTParallel.h" />
-    <ClInclude Include="control\BTSelector.h" />
-    <ClInclude Include="control\BTSequence.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{30ADC100-F3BC-413C-9E29-1F53FB93FAE6}</ProjectGuid>
+    <ProjectGuid>{72B64B36-293A-4827-863F-54463546293A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>BehaviorTree</RootNamespace>
+    <RootNamespace>sample</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -86,6 +77,18 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="arrive.h" />
+    <ClInclude Include="attack.h" />
+    <ClInclude Include="found.h" />
+    <ClInclude Include="idle.h" />
+    <ClInclude Include="monster.h" />
+    <ClInclude Include="move.h" />
+    <ClInclude Include="vector2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

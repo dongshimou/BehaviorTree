@@ -15,24 +15,47 @@ namespace BehaviorTree
     class BTParallel: public BTBase
     {
     public:
-        BTParallel(BTBase* parentNode, Precondition* precondition = nullptr)
-            : BTBase(parentNode, precondition),
+        BTParallel(std::string debugName, BTBase* parentNode = nullptr, Precondition* precondition = nullptr, int value = 0)
+            : BTBase(debugName, parentNode, precondition, value),
               finish_condition(ONE),
               finish_limit(-1)
         {
             ReSetChildStatus();
             Init();
         }
-
+        BTParallel(BTBase* parentNode , Precondition* precondition = nullptr, int value = 0)
+            : BTBase(parentNode, precondition, value),
+              finish_condition(ONE),
+              finish_limit(-1)
+        {
+            ReSetChildStatus();
+            Init();
+        }
+        BTParallel(Precondition* preconditon, int value = 0)
+            : BTBase(preconditon, value),
+              finish_condition(ONE),
+              finish_limit(-1)
+        {
+            ReSetChildStatus();
+            Init();
+        }
+        BTParallel(int value = 0)
+            : BTBase(value),
+              finish_condition(ONE),
+              finish_limit(-1)
+        {
+            ReSetChildStatus();
+            Init();
+        }
         int GetFinishChild()
         {
             return finish_count;
         }
         void ReSetChildStatus()
         {
-            for(int i = 0; i < child.size(); i++)
+            for(int i = 0; i < ChildNode.size(); i++)
             {
-                child_status[child[i]] = running;
+                child_status[ChildNode[i]] = running;
             }
 
             finish_count = 0;
@@ -48,11 +71,11 @@ namespace BehaviorTree
         virtual void Init() {}
         virtual bool DoEvaluate(void* object)
         {
-            for(int i = 0; i < child.size(); i++)
+            for(int i = 0; i < ChildNode.size(); i++)
             {
-                if(child_status[child[i]] == running)
+                if(child_status[ChildNode[i]] == running)
                 {
-                    if(!child[i]->Evaluate(object))
+                    if(!ChildNode[i]->Evaluate(object))
                         return false;
                 }
             }
@@ -61,15 +84,15 @@ namespace BehaviorTree
         }
         virtual RunningStatus DoExecute(void* object)
         {
-            for(int i = 0; i < child.size(); i++)
+            for(int i = 0; i < ChildNode.size(); i++)
             {
-                auto node = child[i];
+                auto node = ChildNode[i];
 
                 if(finish_condition == ONE)
                 {
-                    if(child_status[child[i]] == running)
+                    if(child_status[ChildNode[i]] == running)
                     {
-                        child_status[child[i]] = node->Execute(object);
+                        child_status[ChildNode[i]] = node->Execute(object);
                     }
                     else
                     {
@@ -79,9 +102,9 @@ namespace BehaviorTree
                 }
                 else
                 {
-                    if(child_status[child[i] ] == running)
+                    if(child_status[ChildNode[i] ] == running)
                     {
-                        child_status[child[i] ] = node->Execute(object);
+                        child_status[ChildNode[i] ] = node->Execute(object);
                     }
                     else
                         finish_count++;
@@ -90,7 +113,7 @@ namespace BehaviorTree
 
             if(finish_condition == ANY)
             {
-                if(finish_count == child.size())
+                if(finish_count == ChildNode.size())
                 {
                     ReSetChildStatus();
                     return finish;
@@ -123,10 +146,10 @@ namespace BehaviorTree
         }
         virtual void DoTransition(void* object)
         {
-            for(int i = 0; i < child.size(); i++)
+            for(int i = 0; i < ChildNode.size(); i++)
             {
-                child_status[child[i] ] = running;
-                child[i]->Transition(object);
+                child_status[ChildNode[i] ] = running;
+                ChildNode[i]->Transition(object);
             }
         }
 

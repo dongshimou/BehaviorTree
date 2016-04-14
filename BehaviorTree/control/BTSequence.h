@@ -7,13 +7,30 @@ namespace BehaviorTree
     class BTSequence: public BTBase
     {
     public:
-        BTSequence(BTBase* parentNode, Precondition* precondition = nullptr)
-            : BTBase(parentNode, precondition),
+        BTSequence(std::string debugName, BTBase* parentNode = nullptr, Precondition* precondition = nullptr, int value = 0)
+            : BTBase(debugName, parentNode, precondition, value),
               now_index(-1)
         {
             Init();
         }
-
+        BTSequence(BTBase* parentNode , Precondition* precondition = nullptr, int value = 0)
+            : BTBase(parentNode, precondition, value),
+              now_index(-1)
+        {
+            Init();
+        }
+        BTSequence(Precondition* preconditon, int value = 0)
+            : BTBase(preconditon, value),
+              now_index(-1)
+        {
+            Init();
+        }
+        BTSequence(int value = 0)
+            : BTBase(value),
+              now_index(-1)
+        {
+            Init();
+        }
         virtual void Init() {}
         virtual bool DoEvaluate(void* object)
         {
@@ -22,7 +39,7 @@ namespace BehaviorTree
 
             if(CheckIndex(tempNode))
             {
-                auto node = child[tempNode];
+                auto node = ChildNode[tempNode];
 
                 if(node->Evaluate(object))
                 {
@@ -41,13 +58,13 @@ namespace BehaviorTree
                 now_index = 0;
             }
 
-            auto node = child[now_index];
+            auto node = ChildNode[now_index];
             thisFinish = node->Execute(object);
 
             if(thisFinish == success)
             {
                 now_index++;
-                now_index == child.size() ? now_index = -1 : thisFinish = running;
+                now_index == ChildNode.size() ? now_index = -1 : thisFinish = running;
             }
 
             if(thisFinish == error)
@@ -59,7 +76,7 @@ namespace BehaviorTree
         {
             if(CheckIndex(now_index))
             {
-                auto node = child[now_index];
+                auto node = ChildNode[now_index];
                 node->Transition(object);
             }
 
@@ -68,6 +85,28 @@ namespace BehaviorTree
 
     protected:
         int now_index;
+    };
+
+    class BTAndSequence: public BTSequence
+    {
+        virtual bool DoEvaluate(void* object)
+        {
+            int tempNode;
+            now_index == -1 ? tempNode = 0 : tempNode = now_index;
+
+            if(CheckIndex(tempNode))
+            {
+                auto node = ChildNode[tempNode];
+
+                if(node->Evaluate(object))
+                {
+                    return true;
+                }
+            }
+
+            Transition(object);
+            return false;
+        }
     };
 }
 
