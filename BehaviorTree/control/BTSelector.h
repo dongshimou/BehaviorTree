@@ -63,7 +63,7 @@ namespace BehaviorTree
                     if(CheckIndex(last_index))
                     {
                         auto node = ChildNode[last_index];
-                        node->DoTransition(object);
+                        node->Transition(object);
                     }
 
                     last_index = now_index;
