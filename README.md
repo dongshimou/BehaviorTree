@@ -1,13 +1,15 @@
 # BehaviorTree
 My BehaviorTree lib
 
-我的毕业设计：行为树
+行为树
 
---------version0.1--------
---------2016/04/10--------
-
-Control:sequence,selector,parallel,loop
-Behavior:action
+###Control:
+ 1) sequence
+ 2) selector
+ 3) parallel
+ 4) loop
+###Behavior:
+ 1) action
 
 实现了顺序节点，选择节点，并行节点，循环节点，动作节点
 
