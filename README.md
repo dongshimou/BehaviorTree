@@ -3,12 +3,13 @@ My BehaviorTree lib
 
 行为树
 
-###Control:
+### Control:
  1) sequence
  2) selector
  3) parallel
  4) loop
-###Behavior:
+ 
+### Behavior:
  1) action
 
 实现了顺序节点，选择节点，并行节点，循环节点，动作节点
