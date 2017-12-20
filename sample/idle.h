@@ -1,33 +1,33 @@
 #ifndef _Idle_H_
 #define _Idle_H_
+
 #include "vector2.h"
-class Idle : public BTAction
-{
+
+class Idle : public BTAction {
 public:
-    Idle(BTBase* parent):
-        BTAction(parent)
-    {
+    Idle(BTBase *parent) :
+            BTAction(parent) {
     }
 
-    void OnEnter(void* object)
-    {
-        Vector2 *point = (Vector2*)object;
+    void OnEnter(void *object) {
+        Vector2 *point = (Vector2 *) object;
         cout << "no prey" << endl;
     }
-    RunningStatus Update(void* object)
-    {
-        Vector2 *point = (Vector2*)object;
+
+    RunningStatus Update(void *object) {
+        Vector2 *point = (Vector2 *) object;
         point->x = rand() % 100;
         point->y = rand() % 100;
         cout << "i go to " << point->x << " " << point->y << endl;
-        return success;
+        return STATUS_SUCCESS;
     }
-    void OnExit(void* object)
-    {
+
+    void OnExit(void *object) {
         cout << "stop idle" << endl;
-        Vector2 *point = (Vector2*)object;
+        Vector2 *point = (Vector2 *) object;
         point->visable = true;
     }
 };
+
 #endif // !_Idle_H_
 

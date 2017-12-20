@@ -1,7 +1,6 @@
 #include "monster.h"
 
-int main()
-{
+int main() {
     Monster m_monster;
     m_monster.Live();
 }

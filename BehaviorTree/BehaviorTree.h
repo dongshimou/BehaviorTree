@@ -1,9 +1,9 @@
-#include "base/BTBase.h"
-#include "behavior/BTAction.h"
-#include "control/BTParallel.h"
-#include "control/BTSelector.h"
-#include "control/BTSequence.h"
-#include "control/BTLoop.h"
+#include "./base/BTBase.h"
+#include "./behavior/BTAction.h"
+#include "./control/BTParallel.h"
+#include "./control/BTSelector.h"
+#include "./control/BTSequence.h"
+#include "./control/BTLoop.h"
 
 /*///////////////////////////////////////////////////////
 //-------------------------------------------------------

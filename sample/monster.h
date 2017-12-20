@@ -5,17 +5,15 @@
 #include "found.h"
 #include "vector2.h"
 
-class Monster
-{
+class Monster {
 private:
     Vector2 *point;
 public:
     Monster(int xx = 0, int yy = 0, bool v = true)
-        : point(new Vector2(xx, yy, v))
-    {
+            : point(new Vector2(xx, yy, v)) {
     }
-    void Live()
-    {
+
+    void Live() {
         auto root = new BTBase();
         auto loop = new BTLoop(root);
         root->AddChild(loop);
@@ -36,10 +34,9 @@ public:
         point = new Vector2(StartPoint);
         //point->visable = false;
 
-        while(true)
-        {
-            if(loop->Evaluate((void*)point))
-                loop->Execute((void*)point);
+        while (true) {
+            if (loop->Evaluate((void *) point))
+                loop->Execute((void *) point);
 
             getchar();
         }
