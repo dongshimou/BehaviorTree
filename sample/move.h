@@ -7,7 +7,7 @@
 
 class Move : public BTAction {
 public:
-    Move(BTBase *node)
+    Move(BTBase *node= nullptr)
             : BTAction(node) {
     }
 

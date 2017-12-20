@@ -56,7 +56,7 @@ namespace BehaviorTree {
         }
 
         void SetLoopIndex(int index) {
-            if (CheckIndex(index)) {
+            if (checkIndex(index)) {
                 loop_index = index;
             }
         }
@@ -67,7 +67,7 @@ namespace BehaviorTree {
                 return false;
             }
 
-            if (CheckIndex(loop_index)) {
+            if (checkIndex(loop_index)) {
                 auto node = ChildNode[loop_index];
 
                 if (node->Evaluate(object)) {
@@ -81,7 +81,7 @@ namespace BehaviorTree {
         virtual RunningStatus DoExecute(void *object) override {
             RunningStatus thisfinish = STATUS_FINISH;
 
-            if (CheckIndex(loop_index)) {
+            if (checkIndex(loop_index)) {
                 auto node = ChildNode[loop_index];
                 thisfinish = node->Execute(object);
 
@@ -107,7 +107,7 @@ namespace BehaviorTree {
         }
 
         virtual void DoTransition(void *object) override {
-            if (CheckIndex(loop_index)) {
+            if (checkIndex(loop_index)) {
                 auto node = ChildNode[loop_index];
                 node->Transition(object);
             }

@@ -5,7 +5,7 @@
 
 class Attack : public BTAction {
 public:
-    Attack(BTBase *parent) :
+    Attack(BTBase *parent= nullptr) :
             BTAction(parent) {
     }
 

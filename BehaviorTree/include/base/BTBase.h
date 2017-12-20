@@ -33,13 +33,7 @@ namespace BehaviorTree {
                 BTBase *parentNode = nullptr,
                 Precondition *precondition = nullptr,
                 int value = 0
-        )
-                : DebugName(debugName),
-                  ParentNode(parentNode),
-                  NodePrecondition(precondition),
-                  Value(value) {
-            Init();
-        }
+        );
 
         BTBase(
                 BTBase *parentNode,
@@ -93,7 +87,7 @@ namespace BehaviorTree {
             return a->Value > b->Value;
         }
 
-        bool CheckIndex(int index) {
+        bool checkIndex(int index) {
             if (index >= 0 || index < ChildNode.size())
                 return true;
             else

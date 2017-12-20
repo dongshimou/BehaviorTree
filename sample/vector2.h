@@ -1,7 +1,7 @@
 #ifndef _Vector2_H_
 #define _Vector2_H_
 
-#include "../BehaviorTree/BehaviorTree.h"
+#include "../BehaviorTree/include/BehaviorTree.h"
 #include <iostream>
 #include <string>
 

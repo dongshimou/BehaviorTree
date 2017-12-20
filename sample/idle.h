@@ -5,7 +5,7 @@
 
 class Idle : public BTAction {
 public:
-    Idle(BTBase *parent) :
+    Idle(BTBase *parent= nullptr) :
             BTAction(parent) {
     }
 

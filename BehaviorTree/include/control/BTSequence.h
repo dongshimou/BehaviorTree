@@ -44,7 +44,7 @@ namespace BehaviorTree {
             int tempNode;
             now_index == -1 ? tempNode = 0 : tempNode = now_index;
 
-            if (CheckIndex(tempNode)) {
+            if (checkIndex(tempNode)) {
                 auto node = ChildNode[tempNode];
 
                 if (node->Evaluate(object)) {
@@ -77,7 +77,7 @@ namespace BehaviorTree {
         }
 
         virtual void DoTransition(void *object) override {
-            if (CheckIndex(now_index)) {
+            if (checkIndex(now_index)) {
                 auto node = ChildNode[now_index];
                 node->Transition(object);
             }
@@ -94,7 +94,7 @@ namespace BehaviorTree {
             int tempNode;
             now_index == -1 ? tempNode = 0 : tempNode = now_index;
 
-            if (CheckIndex(tempNode)) {
+            if (checkIndex(tempNode)) {
                 auto node = ChildNode[tempNode];
 
                 if (node->Evaluate(object)) {
