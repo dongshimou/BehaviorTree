@@ -60,8 +60,8 @@ namespace BehaviorTree {
         }
 
         void ReSetChildStatus() {
-            for (int i = 0; i < ChildNode.size(); i++) {
-                child_status[ChildNode[i]] = STATUS_RUNNING;
+            for (int i = 0; i < ChildNodes.size(); i++) {
+                child_status[ChildNodes[i]] = STATUS_RUNNING;
             }
 
             finish_count = 0;
@@ -75,9 +75,9 @@ namespace BehaviorTree {
 
 
         virtual bool DoEvaluate(void *object) override {
-            for (int i = 0; i < ChildNode.size(); i++) {
-                if (child_status[ChildNode[i]] == STATUS_RUNNING) {
-                    if (!ChildNode[i]->Evaluate(object))
+            for (int i = 0; i < ChildNodes.size(); i++) {
+                if (child_status[ChildNodes[i]] == STATUS_RUNNING) {
+                    if (!ChildNodes[i]->Evaluate(object))
                         return false;
                 }
             }
@@ -86,26 +86,26 @@ namespace BehaviorTree {
         }
 
         virtual RunningStatus DoExecute(void *object) override {
-            for (int i = 0; i < ChildNode.size(); i++) {
-                auto node = ChildNode[i];
+            for (int i = 0; i < ChildNodes.size(); i++) {
+                auto node = ChildNodes[i];
 
                 if (finish_condition == ONE) {
-                    if (child_status[ChildNode[i]] == STATUS_RUNNING) {
-                        child_status[ChildNode[i]] = node->Execute(object);
+                    if (child_status[ChildNodes[i]] == STATUS_RUNNING) {
+                        child_status[ChildNodes[i]] = node->Execute(object);
                     } else {
                         ReSetChildStatus();
                         return STATUS_FINISH;
                     }
                 } else {
-                    if (child_status[ChildNode[i]] == STATUS_RUNNING) {
-                        child_status[ChildNode[i]] = node->Execute(object);
+                    if (child_status[ChildNodes[i]] == STATUS_RUNNING) {
+                        child_status[ChildNodes[i]] = node->Execute(object);
                     } else
                         finish_count++;
                 }
             }
 
             if (finish_condition == ANY) {
-                if (finish_count == ChildNode.size()) {
+                if (finish_count == ChildNodes.size()) {
                     ReSetChildStatus();
                     return STATUS_FINISH;
                 } else
@@ -127,9 +127,9 @@ namespace BehaviorTree {
         }
 
         virtual void DoTransition(void *object) override {
-            for (int i = 0; i < ChildNode.size(); i++) {
-                child_status[ChildNode[i]] = STATUS_RUNNING;
-                ChildNode[i]->Transition(object);
+            for (int i = 0; i < ChildNodes.size(); i++) {
+                child_status[ChildNodes[i]] = STATUS_RUNNING;
+                ChildNodes[i]->Transition(object);
             }
         }
 

@@ -6,6 +6,15 @@
 #include <algorithm>
 
 namespace BehaviorTree {
+
+    template<typename T, typename... Args>
+    T *new_impl(T *node, Args... args) {
+        node = new T{
+                args...
+        };
+        return node;
+    };
+
     enum RunningStatus {
         STATUS_ERROR = 1,
         STATUS_READY,
@@ -22,46 +31,27 @@ namespace BehaviorTree {
 
     class BTBase {
     protected:
-        std::vector<BTBase *> ChildNode;
-        BTBase *ParentNode;
-        Precondition *NodePrecondition;
-        std::string DebugName;
-        int Value;
+        std::vector<BTBase *> ChildNodes;
+    private:
+        struct Private;
+        Private *impl;
     public:
-        BTBase(
+        explicit BTBase(
                 std::string debugName,
                 BTBase *parentNode = nullptr,
                 Precondition *precondition = nullptr,
                 int value = 0
         );
 
-        BTBase(
+        explicit BTBase(
                 BTBase *parentNode,
                 Precondition *precondition = nullptr,
                 int value = 0
-        )
-                : DebugName("unnamed"),
-                  ParentNode(parentNode),
-                  NodePrecondition(precondition),
-                  Value(value) {
-            Init();
-        }
+        );
 
-        BTBase(Precondition *precondition, int value = 0)
-                : DebugName("unnamed"),
-                  ParentNode(nullptr),
-                  NodePrecondition(precondition),
-                  Value(value) {
-            Init();
-        }
+        explicit BTBase(Precondition *precondition, int value = 0);
 
-        BTBase(int value = 0)
-                : DebugName("unnamed"),
-                  ParentNode(nullptr),
-                  NodePrecondition(nullptr),
-                  Value(value) {
-            Init();
-        }
+        BTBase(int value = 0);
 
         BTBase(const BTBase &) = delete;
 
@@ -71,35 +61,42 @@ namespace BehaviorTree {
 
         BTBase &operator=(BTBase &&)= default;
 
-        virtual ~BTBase() {
-            for (auto i : ChildNode) {
-                delete i;
-                i = nullptr;
-            }
-
-            ChildNode.clear();
-            delete NodePrecondition;
-            NodePrecondition = nullptr;
-        }
+        virtual ~BTBase();
 
     protected:
-        static bool BTBaseCompare(BTBase *a, BTBase *b) {
-            return a->Value > b->Value;
-        }
 
         bool checkIndex(int index) {
-            if (index >= 0 || index < ChildNode.size())
-                return true;
-            else
-                return false;
+            return (index >= 0 || index < ChildNodes.size());
         }
+
+    public:
+
+        BTBase &setParent(BTBase *parent)noexcept;
+
+        BTBase *getParent() const noexcept;
+
+        Precondition *getPrecondition() const noexcept;
+
+        BTBase &AddChild(BTBase *childNode)noexcept;
+
+        BTBase &setPrecondition(Precondition *nodePrecondition)noexcept;
+
+        BTBase &setName(const char *debugName) noexcept;
+
+        BTBase &setName(std::string debugName) noexcept;
+
+        std::string getName()noexcept;
+
+        bool Evaluate(void *object);
+
+        RunningStatus Execute(void *object);
+
+        void Transition(void *object);
 
     public:
         virtual void Init() {}
 
-        virtual void Sort() {
-            std::sort(ChildNode.begin(), ChildNode.end(), BTBaseCompare);
-        }
+        virtual void Sort() {}
 
         virtual bool DoEvaluate(void *object) {
             return true;
@@ -112,48 +109,7 @@ namespace BehaviorTree {
         virtual void DoTransition(void *object) {
         }
 
-        virtual bool Evaluate(void *object) {
-            return (NodePrecondition == nullptr || NodePrecondition->ExternalCondition(object)) && DoEvaluate(object);
-        }
 
-        virtual RunningStatus Execute(void *object) {
-            return DoExecute(object);
-        }
-
-        virtual void Transition(void *object) {
-            DoTransition(object);
-        }
-
-        BTBase &AddChild(BTBase *childNode) {
-            childNode->ParentNode = this;
-            ChildNode.push_back(childNode);
-            return *this;
-        }
-
-        BTBase &SetPrecondition(Precondition *nodePrecondition) {
-            if (nodePrecondition != NodePrecondition) {
-                if (NodePrecondition != nullptr)
-                    delete NodePrecondition;
-
-                NodePrecondition = nodePrecondition;
-            }
-
-            return *this;
-        }
-
-        BTBase &SetDebugName(const char *debugName) {
-            DebugName = debugName;
-            return *this;
-        }
-
-        BTBase &SetDebugName(std::string debugName) {
-            DebugName = debugName;
-            return *this;
-        }
-
-        const char *GetDebugName() {
-            return DebugName.c_str();
-        }
     };
 }
 

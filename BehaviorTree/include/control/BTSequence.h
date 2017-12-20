@@ -45,7 +45,7 @@ namespace BehaviorTree {
             now_index == -1 ? tempNode = 0 : tempNode = now_index;
 
             if (checkIndex(tempNode)) {
-                auto node = ChildNode[tempNode];
+                auto node = ChildNodes[tempNode];
 
                 if (node->Evaluate(object)) {
                     return true;
@@ -62,12 +62,12 @@ namespace BehaviorTree {
                 now_index = 0;
             }
 
-            auto node = ChildNode[now_index];
+            auto node = ChildNodes[now_index];
             thisFinish = node->Execute(object);
 
             if (thisFinish == STATUS_SUCCESS) {
                 now_index++;
-                now_index == ChildNode.size() ? now_index = -1 : thisFinish = STATUS_RUNNING;
+                now_index == ChildNodes.size() ? now_index = -1 : thisFinish = STATUS_RUNNING;
             }
 
             if (thisFinish == STATUS_ERROR)
@@ -78,7 +78,7 @@ namespace BehaviorTree {
 
         virtual void DoTransition(void *object) override {
             if (checkIndex(now_index)) {
-                auto node = ChildNode[now_index];
+                auto node = ChildNodes[now_index];
                 node->Transition(object);
             }
 
@@ -95,7 +95,7 @@ namespace BehaviorTree {
             now_index == -1 ? tempNode = 0 : tempNode = now_index;
 
             if (checkIndex(tempNode)) {
-                auto node = ChildNode[tempNode];
+                auto node = ChildNodes[tempNode];
 
                 if (node->Evaluate(object)) {
                     return true;

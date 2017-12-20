@@ -26,8 +26,8 @@ public:
         auto m_arrive = new Arrive;
         auto m_found = new Found;
 
-        m_attack->SetPrecondition(m_arrive);
-        m_move->SetPrecondition(m_found);
+        m_attack->setPrecondition(m_arrive);
+        m_move->setPrecondition(m_found);
 
         selector->AddChild(m_idle);
         sequence->AddChild(m_move);

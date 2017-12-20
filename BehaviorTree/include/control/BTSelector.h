@@ -45,8 +45,8 @@ namespace BehaviorTree {
 
 
         virtual bool DoEvaluate(void *object) override {
-            for (int i = 0; i < ChildNode.size(); i++) {
-                auto node = ChildNode[i];
+            for (int i = 0; i < ChildNodes.size(); i++) {
+                auto node = ChildNodes[i];
 
                 if (node->Evaluate(object)) {
                     now_index = i;
@@ -63,7 +63,7 @@ namespace BehaviorTree {
             if (checkIndex(now_index)) {
                 if (last_index != now_index) {
                     if (checkIndex(last_index)) {
-                        auto node = ChildNode[last_index];
+                        auto node = ChildNodes[last_index];
                         node->Transition(object);
                     }
 
@@ -72,7 +72,7 @@ namespace BehaviorTree {
             }
 
             if (checkIndex(last_index)) {
-                auto node = ChildNode[last_index];
+                auto node = ChildNodes[last_index];
                 thisFinish = node->Execute(object);
 
                 if (thisFinish >= STATUS_FINISH) {
@@ -85,7 +85,7 @@ namespace BehaviorTree {
 
         virtual void DoTransition(void *object) override {
             if (checkIndex(last_index)) {
-                auto node = ChildNode[last_index];
+                auto node = ChildNodes[last_index];
                 node->Transition(object);
             }
 
@@ -102,7 +102,7 @@ namespace BehaviorTree {
     class BTNormolSelector : public BTPrioritySelector {
         virtual bool DoEvaluate(void *object) override {
             if (checkIndex(now_index)) {
-                auto node = ChildNode[now_index];
+                auto node = ChildNodes[now_index];
 
                 if (node->Evaluate(object)) {
                     return true;
